@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExoStore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=375, user-scalable=no">
+    <style>
+        #intro-video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001; /* Видео снова поверх всего */
+        }
+        .product-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 450px; /* Увеличено для расширения контента */
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            max-width: 450px; /* Увеличено для большего пространства */
+            height: auto;
+            border: none;
+            background-color: transparent;
+            justify-content: flex-start;
+        }
+
+        .product-image {
+            width: 50%;
+            height: auto;
+            max-width: 360px !important; /* Увеличено в 2 раза */
+            border-radius: 12px;
+            margin-right: 50px;
+        }
+
+        .product-extra-image {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .product-extra-image img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            display: block;
+        }
+
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end; /* выравнивание по правому краю */
+            text-align: right;     /* текст выровнять по правому краю */
+            width: 60%;
+            margin-left: auto;     /* сдвигаем блок вправо */
+        }
+
+        .size-container {
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* сдвигаем секцию размеров вправо */
+        }
+
+        .size-options {
+            display: grid;
+            grid-template-columns: repeat(4, 90px); /* 4 фиксированные колонки */
+            gap: 10px;
+        }
+ 
+
+        .add-to-cart {
+            margin-top: 5px;
+            padding: 6px 10px;
+            font-size: 12px;
+            /* Изначально заблокирована */
+        }
+
+        .product-title {
+            font-size: 12px; /* Уменьшенный текст */
+            margin-bottom: 3px;
+        }
+
+        body {
+            max-width: 375px;
+            margin: 0 auto;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body style="background-color: #d9d2cd;">
+
+    <!-- Видео-заставка -->
+    <div id="intro-video-container">
+        <video id="intro-video" autoplay muted playsinline>
+            <source src="assets/intro.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
+    </div>
+
+    <!-- Основной контент сайта -->
+    <div id="content">
+        <header>
+            <a href="./pages/cart.html" class="cart-icon">
+                <img src="assets/images/cart-icon.png" alt="Корзина">
+                <span id="cart-count"></span>
+            </a>
+        </header>
+
+        <img src="assets/images/logo.png" alt="Logo" class="logo">
+        <div class="gender-tabs">
+            <div class="gender-category">
+                <a href="pages/men_categories.html" class="gender-tab">
+                    <div class="gender-box">
+                        <img src="assets/images/mencol.png" alt="Мужская категория">
+                    </div>
+                </a>
+                <img class="gender-sub-img" src="assets/images/MS.png" alt="Мужская миниатюра">
+            </div>
+
+            <div class="gender-category">
+                <a href="pages/women_categories.html" class="gender-tab">
+                    <div class="gender-box">
+                        <img src="assets/images/womancol.png" alt="Женская категория">
+                    </div>
+                </a>
+                <img class="gender-sub-img" src="assets/images/WMS.png" alt="Женская миниатюра">
+            </div>
+        </div>
+
+        <video autoplay muted loop id="bg-video">
+            <source src="assets/h.mp4" type="video/mp4">
+        </video>
+
+        <div class="product-grid scrollable" style="margin-top: 100px;">
+            <div class="product-extra-image">
+                <img src="../../assets/images/SHOE_1_N.png" alt="Nike Dunk Low Retro Side View">
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe1.jpg" alt="Black Running Shoes">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Nike Dunk Low Retro<br>University Blue Coconut</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                          </div>
+                        <button class="add-to-cart" disabled>ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe2.jpg" alt="White Running Shoes">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">White Running Shoes</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                          </div>
+                        <button class="add-to-cart" disabled>ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe3.jpg" alt="Blue Running Shoes">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Blue Running Shoes</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                          </div>
+                        <button class="add-to-cart" disabled>ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe4.jpg" alt="Red Running Shoes">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Red Running Shoes</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                          </div>
+                        <button class="add-to-cart" disabled>ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe5.jpg" alt="Green Running Shoes">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Green Running Shoes</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                          </div>
+                        <button class="add-to-cart" disabled>ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Здесь будет список обуви -->
+        </div>
+        <a href="../../index.html" class="back-btn">⬅ Назад</a>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("skipIntro") === "true") {
+            const introVideoContainer = document.getElementById("intro-video-container");
+            const content = document.getElementById("content");
+            introVideoContainer.style.display = "none";
+            content.style.display = "block";
+            content.style.opacity = "1";
+            return;
+        }
+        const introVideoContainer = document.getElementById("intro-video-container");
+        const introVideo = document.getElementById("intro-video");
+        const content = document.getElementById("content");
+
+        function showContent() {
+            introVideoContainer.style.opacity = "0";
+            setTimeout(() => {
+                introVideoContainer.style.display = "none";
+                content.style.opacity = "0";
+                content.style.display = "block";
+                setTimeout(() => {
+                    content.style.opacity = "1";
+                }, 500);
+            }, 500);
+            sessionStorage.setItem("videoPlayed", "true");
+        }
+
+        content.style.display = "none";
+        introVideoContainer.style.display = "flex";
+
+        introVideo.addEventListener("ended", function () {
+            console.log("Видео завершено, показываем контент.");
+            showContent();
+        });
+
+        setTimeout(function () {
+            if (introVideoContainer.style.display !== "none") {
+                console.warn("Таймер сработал — показываем контент принудительно.");
+                showContent();
+            }
+        }, 10000);
+
+        if (window.location.pathname.includes("cart.html")) {
+            loadCart();
+        }
+    });
+
+    function selectSize(button) {
+        let sizeContainer = button.closest(".size-container");
+        let sizeButtons = sizeContainer.querySelectorAll(".size-options button");
+        let addToCartButton = sizeContainer.querySelector(".add-to-cart");
+
+        // Убираем выделение с других кнопок
+        sizeButtons.forEach(btn => btn.classList.remove("selected"));
+        button.classList.add("selected");
+
+        // Разблокируем кнопку "В корзину"
+        if (addToCartButton) {
+            addToCartButton.removeAttribute("disabled");
+        }
+    }
+
+    function addToCart(button) {
+        let productCard = button.closest(".product-card");
+        let productTitle = productCard.querySelector(".product-title").innerText;
+        let selectedSize = productCard.querySelector(".size-options button.selected");
+
+        if (!selectedSize) {
+            alert("Выберите размер перед добавлением в корзину!");
+            return;
+        }
+
+        let size = selectedSize.innerText;
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        cart.push({ title: productTitle, size: size });
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert(`Добавлено в корзину: ${productTitle} (${size})`);
+        updateCartCount();
+    }
+
+    function loadCart() {
+        console.log("Загрузка корзины...");
+
+        const cartContainer = document.getElementById("cart-items");
+        if (!cartContainer) {
+            console.warn("Элемент #cart-items не найден! Убедитесь, что он есть в HTML.");
+            return;
+        }
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        console.log("Содержимое корзины из localStorage:", cart);
+
+        if (cart.length === 0) {
+            cartContainer.innerHTML = "<p>Корзина пуста</p>";
+            return;
+        }
+
+        cartContainer.innerHTML = "";
+        cart.forEach((item, index) => {
+            const cartItem = document.createElement("div");
+            cartItem.classList.add("cart-item");
+            cartItem.innerHTML = `
+                <p>${item.title} - Размер: ${item.size}</p>
+                <button class="remove-item" data-index="${index}">❌ Удалить</button>
+            `;
+            cartContainer.appendChild(cartItem);
+        });
+
+        document.querySelectorAll(".remove-item").forEach(button => {
+            button.onclick = function () {
+                let index = parseInt(this.getAttribute("data-index"), 10);
+                removeFromCart(index);
+            };
+        });
+    }
+
+    function removeFromCart(index) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        if (index >= 0 && index < cart.length) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        setTimeout(() => {
+            loadCart(); // Перезагружаем корзину после удаления товара
+            updateCartCount(); // Обновляем количество товаров в корзине
+        }, 50);
+    }
+
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let cartIcon = document.querySelector(".cart-icon span");
+        if (cartIcon) {
+            cartIcon.innerText = cart.length ? `(${cart.length})` : "";
+        }
+    }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мужская коллекция - ExoStore</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .product-card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            max-width: 450px; /* Увеличено для большего пространства */
+            height: auto;
+            border: none;
+            background-color: transparent;
+            justify-content: space-between;
+        }
+
+        .product-image {
+            width: 50%;
+            height: auto;
+            max-width: 180px;
+            border-radius: 12px;
+            margin-right: 50px; /* Отступ вправо оставляем */
+        }
+
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            width: 60%;
+        }
+
+        .size-container {
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .size-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+    </style>
+</head>
+<body class="men-categories">
+
+    <header>
+        <a href="../../index.html">
+            <img src="../../assets/images/logo.png" alt="ExoStore Logo" class="logo">
+        </a>
+        <a href="../../cart.html" class="cart-icon">
+            <img src="../../assets/images/cart-icon.png" alt="Корзина">
+        </a>
+    </header>
+
+    <h1 class="store-title">🧔 Мужская коллекция</h1>
+
+    <div class="category-list">
+        <div class="category-row">
+            <a href="men/men_shoes.html" class="category-tab">
+                <div class="category-box">
+                    <img src="../../assets/images/shoe1.jpg" alt="Мужская обувь">
+                </div>
+            </a>
+            <a href="men/men_clothes.html" class="category-tab">
+                <div class="category-box">
+                    <img src="../../assets/images/clothes1.png" alt="Мужская одежда">
+                </div>
+            </a>
+        </div>
+        <div class="category-row">
+            <a href="men/men_accessories.html" class="category-tab">
+                <div class="category-box">
+                    <img src="../../assets/images/accessories1.png" alt="Мужские аксессуары">
+                </div>
+            </a>
+        </div>
+    </div>
+    <a href="../../index.html?skipIntro=true" class="back-btn-fixed" style="position: fixed; left: 0px; bottom: 0px; z-index: 1000;">
+        <img src="../../assets/images/back2.jpg" alt="Назад" style="max-width: 120px; height: auto;">
+    </a>
+    <script>
+        function selectSize(button) {
+            let buttons = button.parentElement.querySelectorAll("button");
+            buttons.forEach(btn => btn.classList.remove("selected"));
+            button.classList.add("selected");
+        }
+
+        function addToCart(productName, price) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push({ name: productName, price: price });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            document.querySelector(".cart-icon")?.textContent = `🛒 (${cart.length})`;
+        }
+        updateCartCount();
+    </script>
+
+</body>
+</html>

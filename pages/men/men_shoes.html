@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обувь для мужчин - ExoStore</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .size-container {
+            margin-top: 5px;
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .size-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            justify-content: start;
+            width: 100%;
+            max-width: 350px;
+            padding: 5px;
+            margin-left: 16px;
+        }
+
+.add-to-cart {
+    margin: 10px 0 0 0;
+    padding: 6px 10px;
+    font-size: 12px;
+    display: block;
+    text-align: left;
+    margin-left: 23px;
+}
+
+        .product-title {
+            font-size: 14px; /* Немного увеличенный текст */
+            margin-bottom: 3px;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 450px; /* Увеличено для расширения контента */
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border: none;
+            background-color: transparent;
+            justify-content: flex-start;
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            max-width: 240px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            margin-right: 0;
+            margin-left: 0;
+        }
+        
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            padding-left: 0;
+        }
+    </style>
+    <meta name="viewport" content="width=375, user-scalable=no">
+    <style>
+        body {
+            max-width: 375px;
+            margin: 0 auto;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body style="background-color: #d9d2cd;">
+
+    <div id="content">
+        <header>
+            <a href="../../index.html">
+                <img src="../../assets/images/logo.png" alt="ExoStore Logo" class="logo">
+            </a>
+            <a href="../cart.html" class="cart-icon">
+                <img src="../../assets/images/cart-icon.png" alt="Корзина">
+            </a>
+        </header>
+
+        <h1 class="store-title" style="display: none;">Добро пожаловать в ExoStore</h1>
+
+        <h1 class="store-title">👟 Обувь для мужчин</h1>
+
+<div class="product-grid scrollable" style="margin-top: 140px;">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe2.jpg" alt="Sport Sneakers">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Sport Sneakers</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                        </div>
+                        <button class="add-to-cart" disabled>В корзину</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe3.jpg" alt="Casual Shoes">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Casual Shoes</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                        </div>
+                        <button class="add-to-cart" disabled>В корзину</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe4.jpg" alt="Classic Leather Shoes">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Classic Leather Shoes</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                        </div>
+                        <button class="add-to-cart" disabled>В корзину</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe5.jpg" alt="Running Sneakers">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Running Sneakers</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                        </div>
+                        <button class="add-to-cart" disabled>В корзину</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe6.jpg" alt="High-Top Sneakers">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">High-Top Sneakers</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(this)" disabled>В корзину</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe7.jpg" alt="Minimalist Sneakers">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Minimalist Sneakers</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(this)" disabled>В корзину</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe8.jpg" alt="Stylish Loafers">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Stylish Loafers</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(this)" disabled>В корзину</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe9.jpg" alt="Casual Slip-ons">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Casual Slip-ons</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">40</button>
+                            <button onclick="selectSize(this)">41</button>
+                            <button onclick="selectSize(this)">42</button>
+                            <button onclick="selectSize(this)">42.5</button>
+                            <button onclick="selectSize(this)">43</button>
+                            <button onclick="selectSize(this)">43.5</button>
+                            <button onclick="selectSize(this)">44</button>
+                            <button onclick="selectSize(this)">44.5</button>
+                            <button onclick="selectSize(this)">45</button>
+                            <button onclick="selectSize(this)">45.5</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(this)" disabled>В корзину</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../../assets/images/shoe10.jpg" alt="Luxury Sneakers">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Luxury Sneakers</h3>
+                    <div class="size-container">
+                        <div class="size-options">
+                            <button onclick="selectSize(this)">4</button>
+                            <button onclick="selectSize(this)">5</button>
+                            <button onclick="selectSize(this)">6</button>
+                            <button onclick="selectSize(this)">7</button>
+                            <button onclick="selectSize(this)">8</button>
+                            <button onclick="selectSize(this)">9</button>
+                            <button onclick="selectSize(this)">10</button>
+                            <button onclick="selectSize(this)">11</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(this)" disabled>В корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <video autoplay muted loop id="bg-video">
+            <source src="assets/h.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div id="cart-items"></div>
+    <script src="../../js/script.js"></script>
+    <a href="../men_categories.html" class="back-btn-fixed" style="position: fixed; left: 0px; bottom: 0px; z-index: 1000;">
+    <img src="../../assets/images/back.jpg" alt="Назад" style="max-width: 120px; height: auto;">
+    </a>
+</body>
+</html>

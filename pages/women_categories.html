@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Женская категория - ExoStore</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <a href="../index.html">
+            <img src="../assets/images/logo.png" alt="Логотип" class="logo">
+        </a>
+        <a href="cart.html" class="cart-icon">
+            <img src="../assets/images/cart-icon.png" alt="Корзина">
+        </a>
+    </header>
+    
+    <h1 class="store-title">👗 Женская категория</h1>
+
+    <div class="category-list">
+        <div class="category-row">
+            <a href="women/women_shoes.html" class="category-tab">
+                <div class="category-box">
+                    <img src="../assets/images/shoewomen1.jpg" alt="Женская обувь">
+                </div>
+            </a>
+            <a href="women/women_clothes.html" class="category-tab">
+                <div class="category-box">
+                    <img src="../assets/images/clotheswoman1.png" alt="Женская одежда">
+                </div>
+            </a>
+        </div>
+        <div class="category-row">
+            <a href="women/women_accessories.html" class="category-tab">
+                <div class="category-box">
+                    <img src="../assets/images/womanaccessories1.png" alt="Женские аксессуары">
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <a href="../index.html" class="back-btn">⬅ Назад</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const introVideoContainer = document.getElementById("intro-video-container");
+            const introVideo = document.getElementById("intro-video");
+            const content = document.getElementById("content");
+
+            function showContent() {
+                if (content) {
+                    introVideoContainer.style.display = "none";
+                    content.style.display = "block";
+                    console.log("Контент показан.");
+                } else {
+                    console.error("Ошибка: элемент #content не найден, перезагрузка...");
+                    location.reload(); // Автоматическая перезагрузка, если контент не загружается
+                }
+            }
+
+            if (sessionStorage.getItem("videoPlayed")) {
+                console.log("Видео уже было проиграно, сразу показываем контент.");
+                showContent();
+            } else {
+                if (introVideo) {
+                    console.log("Запуск видео-заставки...");
+                    content.style.display = "none";
+                    introVideoContainer.style.display = "flex";
+
+                    introVideo.addEventListener("ended", function () {
+                        console.log("Видео завершено, показываем контент.");
+                        showContent();
+                        sessionStorage.setItem("videoPlayed", "true");
+                    });
+
+                    // Резервный таймер на случай зависания видео
+                    setTimeout(function () {
+                        console.warn("Таймер сработал — показываем контент принудительно.");
+                        showContent();
+                        sessionStorage.setItem("videoPlayed", "true");
+                    }, 10000);
+                } else {
+                    console.warn("Видео не найдено, показываем контент сразу.");
+                    showContent();
+                }
+            }
+        });
+
+        function addToCart(productName, price) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push({ name: productName, price: price });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            document.querySelector(".cart-icon")?.textContent = `🛒 (${cart.length})`;
+        }
+        updateCartCount();
+    </script>
+    
+    <script>
+        if (window.Telegram && Telegram.WebApp) {
+            Telegram.WebApp.expand(); // Развернуть приложение на весь экран
+            Telegram.WebApp.MainButton.setText("🛍 Оформить заказ").show();
+            Telegram.WebApp.MainButton.onClick(function() {
+                alert("Заказ оформлен!");
+            });
+        }
+
+        function selectSize(button) {
+            let buttons = button.parentElement.querySelectorAll("button");
+            buttons.forEach(btn => btn.classList.remove("selected"));
+            button.classList.add("selected");
+        }
+    </script>
+</body>
+</html>

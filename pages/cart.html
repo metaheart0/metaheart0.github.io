@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина - ExoStore</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: #d9d2cd;">
+    <header>
+        <a href="../index.html">
+            <img src="../assets/images/logo.png" alt="Логотип" class="logo">
+        </a>
+        <a href="cart.html" class="cart-icon">
+            <img src="../assets/images/cart-icon.png" alt="Корзина">
+            <span id="cart-count"></span>
+        </a>
+    </header>
+
+    <div id="cart-message"></div>
+    <div class="container scrollable" id="cart-items"></div>
+
+    <button class="pay-btn" onclick="confirmClearCart()">🗑 Очистить корзину</button>
+
+    <a href="javascript:history.back()" class="back-btn">⬅ Назад</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const introVideoContainer = document.getElementById("intro-video-container");
+            const introVideo = document.getElementById("intro-video");
+            const content = document.getElementById("content");
+
+            function showContent() {
+                if (content) {
+                    introVideoContainer.style.display = "none";
+                    content.style.display = "block";
+                }
+            }
+
+            if (sessionStorage.getItem("videoPlayed")) {
+                showContent();
+            } else {
+                if (introVideo) {
+                    content.style.display = "none";
+                    introVideoContainer.style.display = "flex";
+
+                    introVideo.addEventListener("ended", function () {
+                        showContent();
+                        sessionStorage.setItem("videoPlayed", "true");
+                    });
+
+                    // Добавляем таймер на случай, если видео не загружается
+                    setTimeout(showContent, 10000);
+                } else {
+                    showContent();
+                }
+            }
+
+            if (window.location.pathname.includes("cart.html")) {
+                loadCart();
+            }
+        });
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartIcon = document.querySelector(".cart-icon span");
+            if (cartIcon) {
+                cartIcon.innerText = cart.length ? `(${cart.length})` : "";
+            }
+        }
+
+        function loadCart() {
+            console.log("Загрузка корзины...");
+
+            const cartContainer = document.getElementById("cart-items");
+            if (!cartContainer) {
+                console.warn("Элемент #cart-items не найден! Убедитесь, что он есть в HTML.");
+                return;
+            }
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            console.log("Содержимое корзины из localStorage:", cart);
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = "<p>Корзина пуста</p>";
+                return;
+            }
+
+            cartContainer.innerHTML = "";
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+                cartItem.innerHTML = `
+                    <p>${item.title} - Размер: ${item.size}</p>
+                <button class="remove-item" data-index="${index}" onclick="removeFromCart(${index})">❌ Удалить</button>
+                `;
+                cartContainer.appendChild(cartItem);
+            });
+
+            document.querySelectorAll(".remove-item").forEach(button => {
+                button.onclick = function () {
+                    let index = parseInt(this.getAttribute("data-index"), 10);
+                    removeFromCart(index);
+                };
+            });
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            if (index >= 0 && index < cart.length) {
+                cart.splice(index, 1);
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+
+            setTimeout(() => {
+                loadCart(); // Перезагружаем корзину после удаления товара
+                updateCartCount(); // Обновляем количество товаров в корзине
+            }, 50);
+        }
+
+        function addToCart(button) {
+            let productCard = button.closest(".product-card");
+            let productTitle = productCard.querySelector(".product-title").innerText;
+            let selectedSize = productCard.querySelector(".size-options button.selected");
+
+            if (!selectedSize) {
+                alert("Выберите размер перед добавлением в корзину!");
+                return;
+            }
+
+            let size = selectedSize.innerText;
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            cart.push({ title: productTitle, size: size });
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert(`Добавлено в корзину: ${productTitle} (${size})`);
+            updateCartCount();
+        }
+    </script>
+</body>
+</html>

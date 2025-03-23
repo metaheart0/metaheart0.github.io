@@ -1,0 +1,9 @@
+{
+    "project_name": "ExoStore",
+    "version": "1.0.0",
+    "author": "Твое Имя",
+    "description": "Интернет-магазин ExoStore для Telegram WebApp",
+    "currency": "USD",
+    "categories": ["Мужская одежда", "Женская одежда", "Обувь", "Аксессуары"],
+    "api_url": "https://api.exostore.com"
+  }
